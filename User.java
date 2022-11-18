@@ -6,11 +6,11 @@ private static String email;
 private static String username;
 private static String password;
 private static String studentId;
-public static ArrayList<String> emails=new ArrayList<String>();
-public static ArrayList<String> usernames=new ArrayList<String>(); 
-public static ArrayList<String> passwords=new ArrayList<String>(); 
-public static ArrayList<String> studentIds=new ArrayList<String>();
-public static ArrayList<User> users=new ArrayList<User>();
+private static ArrayList<String> emails=new ArrayList<String>();
+private static ArrayList<String> usernames=new ArrayList<String>(); 
+private static ArrayList<String> passwords=new ArrayList<String>(); 
+private static ArrayList<String> studentIds=new ArrayList<String>();
+private static ArrayList<User> users=new ArrayList<User>();
 public static Scanner input=new Scanner(System.in);
 	public User(String email,String username,String password,String studentId) {
 		this.email=email;

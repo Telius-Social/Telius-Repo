@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Message {
-	public static void chat(String username1,String username4) {
-		ArrayList<String> messages=new ArrayList<String>();
+public class Message { // if Message extended User, we would be able to go without some extra code and also use the inherited fields without re-reading/ checking/ writing them
+	public static void chat(String username1,String username4) { // for example, username1 (the user's username) could have been inherited by the User class
+		ArrayList<String> messages=new ArrayList<String>(); 
 		boolean stop=false;
-		System.out.println("Enter first username: ");
+		System.out.println("Enter first username: "); // why do we need to re-learn and re-check the sender's username if they have already logged in?
 		Scanner input1=new Scanner(System.in);
 		username1=input1.next();
-		System.out.println("Enter second username:  ");
+		System.out.println("Enter second username:  "); 
 		Scanner input2=new Scanner(System.in);
 		username4=input2.next();
 		int index1=0;
@@ -22,19 +22,20 @@ public class Message {
 			}
 		}
 		while(stop==false) {
-			System.out.print(User.usernames.get(index1)+" enter message:");
+			System.out.print(User.usernames.get(index1)+" enter message:"); // needs try catch block (at least 1 char, no more than 1000 chars or smth)
+			// messageID
 			String message1=input1.next();
 			System.out.println(User.usernames.get(index1)+":"+message1);
 			System.out.print("|||||"+
 					          "||||");
-			System.out.print(User.usernames.get(index2));
+			String messageID=
 			System.out.print(User.usernames.get(index2));
 			System.out.print(" enter message:");
 			String message2=input2.next();
 			System.out.println(User.usernames.get(index2)+":"+message2);
 			System.out.print("|||||"+
 			          "||||");
-			System.out.println("enter 1 to stop 2 to continue: ");
+			System.out.println("enter 1 to stop, 2 to continue: ");
 			int sit=input1.nextInt();		
 			if(sit==1) {
 			stop=true;

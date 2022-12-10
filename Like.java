@@ -5,10 +5,10 @@ public class Like extends Message {
 	public int likeCounter(int numberOfLikes) {
 		return numberOfLikes;
 	}
-	private int newLike(int numberOfLikes) {
+	private static int newLike(int numberOfLikes) {
 		return ++numberOfLikes;
 	}
-	private int takeLikeBack(int numberOfLikes) {
+	private static int takeLikeBack(int numberOfLikes) {
 		return --numberOfLikes;
 	}
 }

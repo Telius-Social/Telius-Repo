@@ -1,4 +1,4 @@
-package uniQ;
+
 
 public class Like extends Message {
 	private int numberOfLikes;	

@@ -24,7 +24,7 @@ public class App {
             	Message.chat(ok);
             	Scanner in  = new Scanner(System.in);
             	int chat = in.nextInt();
-            	if(chat == 1)
+            	if (chat == 1)
             	{ Chat.SentMessage(); }
             	System.out.println( "Ready to see your messages and maybe like them ? if so, press '2' " );
             	Scanner ans = new Scanner(System.in);

@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class App {
-	public static void main( String[] args ) {
+    public static void main( String[] args ) {
         System.out.println( "Hello Student" );
         System.out.println( "It's a great day to become a member of our community! Type '1' if you want to sign up!" );
         System.out.println( "Already have an account? Type '2' for login!" );

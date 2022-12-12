@@ -10,11 +10,11 @@ public class App {
         Scanner an = new Scanner(System.in);
         int selection = an.nextInt();
         String ok = " ";
-        if (selection == 1 ) {
+        if (selection == 1) {
             //καλει τη μεθοδο register 
             ok = RegisterUser.register();
             //αν ηταν επιτυχής θα γυρισει ενα true που θα μπει στο ok
-        } else if (selection == 2 ) {
+        } else if (selection == 2) {
             System.out.println("ok");
             ok = Login.makeLogin();
         }
@@ -24,12 +24,12 @@ public class App {
             	Message.chat(ok);
             	Scanner in  = new Scanner(System.in);
             	int chat = in.nextInt();
-            	if(chat == 1 )
+            	if(chat == 1)
             	{ Chat.SentMessage(); }
             	System.out.println( "Ready to see your messages and maybe like them ? if so, press '2' " );
             	Scanner ans = new Scanner(System.in);
             	int mes = ans.nextInt();
-            	if ( mes == 2 )
+            	if (mes == 2)
             	{ Chat.SeeMessage(); }
             	ans.close();
             	in.close();

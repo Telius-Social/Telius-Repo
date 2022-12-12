@@ -3,10 +3,10 @@ import java.util.Collections;
 import java.util.Scanner;
 
 public class Login {
-	public static String makeLogin() {
-		System.out.println("Hello, Thank you for joining us");
-		System.out.println("You have chosen to login");
-		boolean flag ;
+    public static String makeLogin() {
+	System.out.println("Hello, Thank you for joining us");
+	System.out.println("You have chosen to login");
+	boolean flag ;
         Scanner an = new Scanner(System.in);
         System.out.println("Please enter your email");
         String email = an.nextLine();

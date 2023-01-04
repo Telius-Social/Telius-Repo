@@ -41,33 +41,18 @@ public class Files  {
 		enterID.append(str4);	
 	}
 	public static boolean checkForRegister(String str1,String str2,String str3) throws IOException {
-		LoadFiles();
-		int state = 0;
-		String seed=dataEmails.readLine();
-		while(seed!=null) {
-			if(seed==str1) {
-				++state;
-			}
-			seed=dataEmails.readLine();
-		}
-		seed=dataUsernames.readLine();
-		while(seed!=null) {
-			if(seed==str2) {
-				++state;
-			}
-			seed=dataUsernames.readLine();
-		}
-		seed=dataID.readLine();
-		while(seed!=null) {
-			if(seed==str3) {
-				++state;
-			}
-			seed=dataID.readLine();
-		}
-		if(state==0) {
+			LoadFiles();
+		filesToLists(ob,list);
+		if(list.contains(str)==true) {
 			return true;
-		}else {
+		} else {
 			return false;
+		}
+	}
+		public static void filesToLists(BufferedReader ob,ArrayList<String> list) throws IOException {
+		
+		while(ob.readLine()!=null) {
+			list.add(ob.readLine());
 		}
 	}
 	

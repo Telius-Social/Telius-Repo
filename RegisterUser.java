@@ -102,56 +102,56 @@ public static Scanner input=new Scanner(System.in);
 	public boolean contains(String email2) {
 		return false;
 	}
-	public static String register() {
-		boolean makeAnAccount=false;
-		String email = " ";
-		String username = " ";
-		String password = " ";
-		String studentId = " ";
-		while(makeAnAccount==false) {
-			System.out.println("Enter your email:");
-			email=input.next();
-			//System.out.println(email);
-			System.out.println("Enter your username: ");
-			username=input.next();
-			System.out.println("Enter your password: ");
-			password=input.next();
-			System.out.println("Enter your University Department: ");
-			studentId=input.next();
-			makeAnAccount=checkAvailability(email,username,password,studentId);
-			if(makeAnAccount==false) {
-				System.out.println("Enter your credentials again");
+	public static void register() throws IOException {
+		String email;
+		String username;
+		String password;
+		String studentId;
+		int state=0;
+		String[] warnings= new String[5];
+		do {
+		state=0;	
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter your email:");
+		email=input.next();
+		if(Files.checkForRegister(email, Files.emails, Files.dataEmails)==true) {
+		++state;
+		warnings[1]="Unavailable email,choose a different email";
+		}
+		System.out.println("Enter your username: ");
+		username=input.next();
+		if(Files.checkForRegister(username, Files.usernames, Files.dataUsernames)==true) {
+			++state;
+			warnings[2]="Unavailable username,choose a different username";
 			}
+		System.out.println("Enter your password: ");
+		password=input.next();
+		if(password.length()<8 || password.length()>64) {
+			++state;
+			warnings[3]="Invalid password email,choose a different pawwsord that has 8 to 64 characters";
+			}
+		System.out.println("Enter your studentId: ");
+		studentId=input.next(); 
+		if(Files.checkForRegister(email, Files.studentID, Files.dataID)==true) {
+			++state;
+			warnings[4]="Unavailable studentID,choose a different studentID";
+			}
+		if(state>0) {
+			warnings[4]="Invalid credentials, please enter the necessary fields ";
 		}
-		System.out.println(email);
-		if(makeAnAccount==true) {
-			emails.add(email);
-			usernames.add(username);
-			passwords.add(password);
-			studentIds.add(studentId);
-			//users.add(new RegisterUser(email,username,password,studentId));
-			System.out.println("You have been registered");
-
-			Collections.sort(emails);
-            Collections.sort(usernames);
-            Collections.sort(studentIds);
-
-			//System.out.println(emails);
-
-		}   
-            return username;
+		for(int i = 0;i<5;i++) {
+			if(warnings[i]!=null&&state>0) {
+				System.out.println(warnings[i]);
+			}
+		
 		}
-
-	private static boolean checkAvailability(String email2, String username2,String password2 ,String studentId2) {
-		boolean result=true;
-		if(emails.contains(email2)||usernames.contains(username2)||(password2.length()<8 || password2.length()>64)||studentIds.contains(studentId2)) {
-			result=false;
+		} while (state > 0);
+		if (state==0) {
+			Files.updateFiles(email, username, password, studentId);
+			Files.closeFiles();
+			System.out.println("You have been registered!");
 		}
-		return result;
 	}
-
-	
-
 }
 
 	

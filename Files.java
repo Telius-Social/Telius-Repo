@@ -14,6 +14,10 @@ public class Files  {
 	public static BufferedReader dataID;
 	private static BufferedWriter enterPassword;
 	private static BufferedReader dataPassword;
+	public static ArrayList<String> emails= new ArrayList<String>();
+	public static ArrayList<String> usernames= new ArrayList<String>();
+	public static ArrayList<String> passwords= new ArrayList<String>();
+	public static ArrayList<String> studentID= new ArrayList<String>();
 	public static void LoadFiles() throws IOException {
 		enterEmails = new BufferedWriter(new FileWriter("C:\\Users\\User\\Desktop\\userEmails.txt",true));
 		dataEmails = new BufferedReader(new FileReader("C:\\Users\\User\\Desktop\\UserEmails.txt"));

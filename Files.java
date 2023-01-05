@@ -41,7 +41,6 @@ public class Files  {
 		enterID.append(str4);	
 	}
 	public static boolean checkForRegister(String str1,String str2,String str3) throws IOException {
-			LoadFiles();
 		filesToLists(ob,list);
 		if(list.contains(str)==true) {
 			return true;

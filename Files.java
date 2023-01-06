@@ -53,10 +53,13 @@ public class Files  {
 		}
 	}
 		public static void filesToLists(BufferedReader ob,ArrayList<String> list) throws IOException {
-		
-		while(ob.readLine()!=null) {
-			list.add(ob.readLine());
+		String str=ob.readLine();
+		while(str!=null) {
+			System.out.println(str);
+			list.add(str);
+			str=ob.readLine();
 		}
+		
 	}
 	
 }

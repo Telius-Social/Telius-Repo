@@ -15,50 +15,65 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Message {
-	public String username;
-	public String message;
-	public Message(String usern,String str) {
-		this.username=usern;
-		this.message=str;
-	}
-	public String toString() {
-		return String.format("%s: %s",username,message );
-	}
-	public static void chat() throws FileNotFoundException, IOException {
+	public static String  receiver;
+	public static ArrayList<String> messages=new ArrayList<String>();
+	public static void sendAmessage() throws IOException {
 		Scanner input = new Scanner(System.in);
-		BufferedWriter out = new BufferedWriter(new FileWriter("C:\\Users\\User\\Desktop\\bechat.txt"));
-		BufferedReader in = new BufferedReader(new FileReader("C:\\Users\\User\\Desktop\\bechat.txt"));
-        System.out.println("Enter your username");	
-		String username1=input.next();
-		String username2;
-		boolean count=true;
-		try {
-		while(count==true) {
-				System.out.println("Press 1 to send a message or 2 to see your messages");
-				int answer=input.nextInt();
-				if(answer==1) {
-					System.out.println("Enter the user you want to send the message:");
-					username2=input.next();
-					System.out.println("Enter the message:");
-					String mes=input.next();
-					sendAmessage(out,mes);	
-				}
-				if(answer==2) {
-					seeAmessage(in,username1);
-				}
-				System.out.println("Enter true if you want to stop:");
-				count=input.hasNextBoolean();
+		BufferedWriter in = new BufferedWriter(new FileWriter("C:\\Users\\User\\Desktop\\chat.txt",true));
+		System.out.print("Enter the user you want to send the message: ");
+		receiver=input.next();
+		boolean value = Files.checkRegister(receiver, Files.usernames, Files.dataUsernames);
+		while(value==false) {
+			System.out.println("This user does not exist");
+			System.out.print("Enter again the username:");
+			receiver= input.next();
+			value = Files.checkRegister(receiver, Files.usernames, Files.dataUsernames);
+		}
+		if(value==true) {
+			System.out.println("Enter the message you want to send: ");
+			String mess=input.next();
+			mess=String.format("From:%s%nTo:%s%nMessage:%s",UserExperience.username,receiver,mess);
+			if(UserExperience.username!=null) {
+				in.write(mess);
+				in.newLine();
+				in.close();
 			}
-		} catch (InputMismatchException e) {
-			System.out.println("You have to enter either 1 or 2: ");
+		}
+	}
+	public static void seeAmessage() throws IOException, ClassNotFoundException {
+		BufferedReader out = new BufferedReader(new FileReader("C:\\Users\\User\\Desktop\\chat.txt"));
+		Files.filesToLists(out, messages);
+		String textReceiver=null;
+		String textMessage=null;
+		String textSender=null;
+		for(int i=0;i<messages.size();i++) {
+			if(messages.get(i).contains("From:")==true) {
+				textSender=messages.get(i);
+			}
+			if(messages.get(i).contains("To:"+UserExperience.username)==true) {
+				textReceiver=messages.get(i);
+			}
+			if(messages.get(i).contains("Message:")==true); {
+				textMessage=messages.get(i);
+			}
+		}
+	
+		int answer=0;
+		Scanner input = new Scanner(System.in);
+		if(textSender!=null&&textReceiver!=null&&textMessage!=null) {
+			String message=String.format("%s%n%s", textSender,textMessage);
+			System.out.println(message);
+			System.out.println("Enter 1 to like the message or 2 to dislike the message");
+			answer=input.nextInt();
+			if(answer==1) {
+				Like.likeAmessge(answer);
+			}
+			if(answer==2) {
+				Like.dislikeAmessage(answer);
+			}
+		} else {
+			System.out.println(String.format("No new messages!"));
 		}
 		
-	}
-	public static void sendAmessage(BufferedWriter fis,String wer) throws IOException {
-		fis.write(wer);
-		fis.close();
-	}
-	public static void seeAmessage(BufferedReader tre,String x) throws IOException {
-		System.out.println(x+"sent you the message:"+":"+tre.readLine());
 	}
 }

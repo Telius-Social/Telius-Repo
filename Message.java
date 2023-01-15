@@ -63,7 +63,6 @@ public class Message {
 				textSender = messages.get(i);
 			}
 			if (textSender != UserExperience.username)
-				;
 			{
 				if (messages.get(i).contains("Message:") == true && textSender != null) {
 					textMessage = messages.get(i);

@@ -19,7 +19,17 @@ public class Message {
 	public static ArrayList<String> messages=new ArrayList<String>();
 	public static void sendAmessage() throws IOException {
 		Scanner input = new Scanner(System.in);
-		BufferedWriter in = new BufferedWriter(new FileWriter("C:\\Users\\User\\Desktop\\chat.txt",true));
+		FileWriter fis = new FileWriter("C:\\Users\\User\\Desktop\\chat.txt", true);
+		PrintWriter out = new PrintWriter(fis);
+		System.out.println("You can send a message to the following users:");
+		Files.filesToLists(Files.dataUsernames, Files.usernames);
+		if (Files.usernames.isEmpty() == false) {
+			for (int i = 0; i < Files.usernames.size(); i++) {
+				if (Files.usernames.get(i) != null) {
+					System.out.println(Files.usernames.get(i));
+				}
+			}
+		}
 		System.out.print("Enter the user you want to send the message: ");
 		receiver=input.next();
 		boolean value = Files.checkRegister(receiver, Files.usernames, Files.dataUsernames);
@@ -46,33 +56,34 @@ public class Message {
 		String textReceiver=null;
 		String textMessage=null;
 		String textSender=null;
-		for(int i=0;i<messages.size();i++) {
-			if(messages.get(i).contains("From:")==true) {
-				textSender=messages.get(i);
+		for (int i = 0; i < messages.size(); i++) {
+			if (messages.get(i).contains("From:") == true
+					&& messages.get(i).contains("From:" + UserExperience.username) == false
+					&& messages.get(i).contains("Message:") == false) {
+				textSender = messages.get(i);
 			}
-			if(messages.get(i).contains("To:"+UserExperience.username)==true) {
-				textReceiver=messages.get(i);
-			}
-			if(messages.get(i).contains("Message:")==true); {
-				textMessage=messages.get(i);
+			if (textSender != UserExperience.username)
+				;
+			{
+				if (messages.get(i).contains("Message:") == true && textSender != null) {
+					textMessage = messages.get(i);
+					String message1 = String.format("%s%n%s", textSender, textMessage);
+					texts.add(message1);
+					textSender = null;
+				}
 			}
 		}
-	
-		int answer=0;
-		Scanner input = new Scanner(System.in);
-		if(textSender!=null&&textReceiver!=null&&textMessage!=null) {
-			String message=String.format("%s%n%s", textSender,textMessage);
-			System.out.println(message);
-			System.out.println("Enter 1 to like the message or 2 to dislike the message");
-			answer=input.nextInt();
-			if(answer==1) {
+		Scanner rew = new Scanner(System.in);
+		for (int j = 0; j < texts.size(); j++) {
+			System.out.println((j + 1) + ":" + texts.get(j));
+			System.out.println("To like the message press 1,to dislike the message press 2, to continue press 0");
+			int answer = rew.nextInt();
+			if (answer == 1) {
 				Like.likeAmessge(answer);
 			}
-			if(answer==2) {
+			if (answer == 2) {
 				Like.dislikeAmessage(answer);
 			}
-		} else {
-			System.out.println(String.format("No new messages!"));
 		}
 		
 	}

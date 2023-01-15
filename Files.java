@@ -14,10 +14,13 @@ public class Files  {
 	public static BufferedReader dataID;
 	private static BufferedWriter enterPassword;
 	private static BufferedReader dataPassword;
+	public static PrintWriter notification;
+	public static BufferedReader datanot;
 	public static ArrayList<String> emails= new ArrayList<String>();
 	public static ArrayList<String> usernames= new ArrayList<String>();
 	public static ArrayList<String> passwords= new ArrayList<String>();
 	public static ArrayList<String> studentID= new ArrayList<String>();
+	public static ArrayList<String> notifications=new ArrayList<String>();
 	public static void LoadFiles() throws IOException {
 		enterEmails = new BufferedWriter(new FileWriter("C:\\Users\\User\\Desktop\\userEmails.txt",true));
 		dataEmails = new BufferedReader(new FileReader("C:\\Users\\User\\Desktop\\UserEmails.txt"));
@@ -27,6 +30,8 @@ public class Files  {
 		dataPassword = new BufferedReader(new FileReader("C:\\Users\\User\\Desktop\\passwords.txt"));
 		enterID = new BufferedWriter(new FileWriter("C:\\Users\\User\\Desktop\\UserIds.txt",true));
 		dataID = new BufferedReader(new FileReader("C:\\Users\\User\\Desktop\\UserIds.txt"));
+		notification=new PrintWriter(new FileWriter("C:\\Users\\User\\Desktop\\notifications.txt", true));
+	datanot=new BufferedReader(new FileReader("C:\\Users\\User\\Desktop\\notifications.txt"));
 	}
 	public static void closeFiles() throws IOException {
 		enterEmails.close();
@@ -60,6 +65,14 @@ public class Files  {
 			str=ob.readLine();
 		}
 		
+	}
+	public static void readNotifications(BufferedReader ob,ArrayList<String> list) throws IOException {
+		filesToLists(ob,list);
+		for(int i=0;i<list.size();i++) {
+			if(list.get(i).contains("From:"+UserExperience.username)==true) {
+				System.out.println(list.get(i+1)+" from the user you sent it");
+			}
+		} 
 	}
 	
 }

@@ -53,6 +53,7 @@ public class Message {
 	public static void seeAmessage() throws IOException, ClassNotFoundException {
 		BufferedReader out = new BufferedReader(new FileReader("C:\\Users\\User\\Desktop\\chat.txt"));
 		Files.filesToLists(out, messages);
+		ArrayList<String> texts = new ArrayList<String>();
 		String textReceiver=null;
 		String textMessage=null;
 		String textSender=null;
@@ -83,6 +84,9 @@ public class Message {
 			if (answer == 2) {
 				Like.dislikeAmessage(answer);
 			}
+		}
+		if(texts.isEmpty()==true) {
+			System.out.println("No new messages!");
 		}
 		
 	}

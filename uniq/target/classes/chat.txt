@@ -1,0 +1,36 @@
+From:dimitrap
+To:mikegian
+Message:Hi!!
+From:dimitrap
+To:ilias
+Message:How
+From:dimitrap
+To:ilias
+Message:how are you today?
+From:mikeg
+To:dimitrap
+Message:hello dimitra!
+From:dimitrap
+To:mikeg
+Message:helllo back
+From:gianmi
+To:dimitrap
+Message:hiiii there
+From:athinaklt
+To:dimitrap
+Message:Great Job!
+From:mary
+To:dimitrap
+Message:hello great job!
+From:katerina
+To:dimitrap
+Message:hello there!
+From:dimitrap
+To:athinaklt
+Message:hi there!
+From:dimitrap
+To:katerina
+Message:Hi how are you?
+From:dimitrap
+To:nikos5
+Message:3

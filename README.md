@@ -59,8 +59,8 @@ dilike.jpg
 
 
 ## Διάγραμμα UML
-![UML](..\\..\\resources\\UML.png)
 
+![UML](https://user-images.githubusercontent.com/116435775/212921558-c2399592-68c6-4b30-b3ff-729edf739e4b.png)
 ## Επισκόπηση των δομών δεδομένων και των αλγορίθμων που χρησιμοποιεί η εφαρμογή
  ### Δομές Δεδομένων
  ArrayLists<>
